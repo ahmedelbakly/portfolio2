@@ -1,0 +1,94 @@
+* {
+  /* box-sizing: border-box; */
+  /* margin: 0; */
+  /* padding: 0; */
+}
+
+.services-container {
+  min-height: calc(100vh - 60px);
+  background: rgb(0, 0, 6);
+  /* width: 100%!important; */
+}
+
+.services-container .title {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 30px;
+  font-family: Roboto;
+  font-weight: 600;
+  color: rgb(127, 123, 123);
+}
+
+.services-container .card {
+  margin: 10px;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  position: relative;
+  animation: moveCard 1s linear;
+  -webkit-animation: moveCard 3s linear;
+}
+.services-container .card img {
+  width: 100% !important;
+  height: 200px;
+}
+.services-container .card-title {
+  background: linear-gradient(
+    90deg,
+    rgb(12, 9, 77) 0%,
+    rgb(13, 13, 144) 1%,
+    rgb(233, 49, 7) 77%
+  );
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-family: monospace;
+}
+.services-container .card:hover {
+  box-shadow: 0px 0px 40px 5px rgb(152, 5, 145);
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+@media only screen and (max-width: 600px) {
+  .title {
+    font-size: 20px;
+  }
+}
+
+@keyframes moveCard {
+  0% {
+    transform: translate(1000px, -500px);
+    -webkit-transform: translate(1000px, -500px);
+    -moz-transform: translate(1000px, -500px);
+    -ms-transform: translate(1000px, -500px);
+    -o-transform: translate(1000px, -500px);
+  }
+  50% {
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+  }
+
+  80% {
+    transform: translate(-50px, -50px);
+    -webkit-transform: translate(-50px, -50px);
+    -moz-transform: translate(-50px, -50px);
+    -ms-transform: translate(-50px, -50px);
+    -o-transform: translate(-50px, -50px);
+}
+  100% {
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+  }
+}

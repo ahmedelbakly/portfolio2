@@ -1,0 +1,182 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.about-container {
+  min-height: 100vh;
+  background: #000 !important;
+}
+
+.btn-box .btn-group button {
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 3px 20px;
+}
+.btn-box .btn-group button:hover,
+.btn-box .btn-group button:active,
+.btn-box .btn-group button:focus {
+  background: rgba(56, 248, 3, 0.622) !important;
+  border-color: rgb(130, 2, 249);
+  border-color: inherit;
+  outline-color: black !important;
+  box-shadow: none !important;
+}
+
+.img-box .img-base {
+  width: 300px!important;
+  height: 450px;
+  box-shadow: 0 0 10px #0dcaf0;
+  transition: all 2s;
+  -webkit-transition: all 2s;
+  -moz-transition: all 2s;
+  -ms-transition: all 2s;
+  -o-transition: all 2s;
+  margin:auto;
+}
+
+.img-edu {  
+  margin-top: 50px!important;
+  width: 400px !important;
+  height: 550px!important;
+  width: 300px!important;
+  height: 450px;
+  box-shadow: 0 0 10px #0dcaf0;
+  transition: all 2s;
+  -webkit-transition: all 2s;
+  -moz-transition: all 2s;
+  -ms-transition: all 2s;
+  -o-transition: all 2s;
+}
+.img-box img:hover {
+  box-shadow: 0 0 30px #0dcaf0;
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}
+
+.box-content ul {
+  list-style-type: none;
+
+  font-size: 20px;
+}
+.box-content ul li {
+  background: rgb(252, 252, 252);
+  padding: 5px 4px !important;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  margin: 15px 10px 15px 0px;
+  width: 150px;
+  font-family: Roboto;
+  transition: all 0.5s;
+  font-size: 15px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+.box-content ul li:hover {
+  background: rgba(255, 3, 3, 0.761);
+  color: white;
+}
+
+
+
+.skills {
+  animation: moveSkills 2s linear;
+  -webkit-animation: moveSkills 2s linear;
+}
+@media only screen and (max-width: 600px) {
+  .education-box ul li {
+    width: 350px!important;
+  }
+}
+
+@keyframes moveSkills {
+  0% {
+    transform: translateY(-1000px) ;
+    -webkit-transform: translateY(-1000px) ;
+    -moz-transform: translateY(-1000px) ;
+    -ms-transform: translateY(-1000px) ;
+    -o-transform: translateY(-1000px) ;
+}
+  100% {
+    transform: translateY(0px) ;
+    -webkit-transform: translateY(0px) ;
+    -moz-transform: translateY(0px) ;
+    -ms-transform: translateY(0px) ;
+    -o-transform: translateY(0px) ;
+}
+}
+
+.education-box ul {
+  display: flex;
+}
+.education-box li{
+  background: rgb(249, 247, 247);
+  color: blue ;
+  width: 100%!important;
+  font-size: 18px!important;
+  padding: 5px 5px !important;
+  text-transform: capitalize;
+  margin: auto;
+}
+
+.moveRight {
+  animation: moveRight 2s linear;
+  -webkit-animation: moveRight 2s linear;
+ 
+}
+.moveLeft {
+  animation: moveLeft 2s linear;
+  -webkit-animation: moveLeft 2s linear;
+  
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translate(-500px, 100px);
+    -webkit-transform: translate(-500px, 100px);
+    -moz-transform: translate(-500px, 100px);
+    -ms-transform: translate(-500px, 100px);
+    -o-transform: translate(-500px, 100px);
+}
+  100% {
+    transform: translate(0px, 0px);
+    -webkit-transform: translate(0px, 0px);
+    -moz-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+}
+}
+@keyframes moveLeft {
+  0% {
+    transform: translate(500px, 100px📮);
+    -webkit-transform: translate(500px, 100px📮);
+    -moz-transform: translate(500px, 100px📮);
+    -ms-transform: translate(500px, 100px📮);
+    -o-transform: translate(500px, 100px📮);
+}
+  100% {
+    transform: translate(0, 0📮);
+    -webkit-transform: translate(0, 0📮);
+    -moz-transform: translate(0, 0📮);
+    -ms-transform: translate(0, 0📮);
+    -o-transform: translate(0, 0📮);
+}
+}
+
+@media only screen and (max-width: 767px) {
+ 
+}

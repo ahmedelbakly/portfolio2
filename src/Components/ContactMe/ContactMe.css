@@ -1,0 +1,97 @@
+.contact-container {
+  min-height: calc(100vh - 60px);
+  background: #000 !important;
+  width: 100%;
+  margin: auto;
+}
+
+.call {
+  width: 200px;
+  height: 200px;
+  background: #fff;
+  font-size: 40px;
+  position: relative;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+}
+
+.call:hover {
+  box-shadow: 0 0 20px 5px rgba(103, 244, 2, 0.507);
+}
+.text {
+  font-family: Roboto;
+}
+.text a {
+  text-decoration: none !important;
+}
+.icon {
+  position: absolute !important;
+  top: 45px;
+  transform: rotate(-230deg);
+  -webkit-transform: rotate(-230deg);
+  -moz-transform: rotate(-230deg);
+  -ms-transform: rotate(-230deg);
+  -o-transform: rotate(-230deg);
+  font-size: 60px;
+  color: rgb(255, 3, 3);
+}
+
+.icon-email {
+  top: 30px;
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+}
+
+@media only screen and (max-width: 600px) {
+  .contact-container {
+    padding-top: 500px !important;
+  }
+}
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ form $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+.form {
+  width: 450px !important;
+  font-family: monospace;
+  box-shadow: 0 0 15px 5px rgba(60, 255, 0, 0.574);
+  animation: moveEmail 2s linear;
+  -webkit-animation: moveEmail 2s linear;
+}
+
+@keyframes moveEmail {
+  0% {
+    transform: translate(600px, -500px);
+    -webkit-transform: translate(600px, -500px);
+    -moz-transform: translate(600px, -500px);
+    -ms-transform: translate(600px, -500px);
+    -o-transform: translate(600px, -500px);
+}
+  50% {
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+  }
+
+  80% {
+    transform: translate(-50px, -50px);
+    -webkit-transform: translate(-50px, -50px);
+    -moz-transform: translate(-50px, -50px);
+    -ms-transform: translate(-50px, -50px);
+    -o-transform: translate(-50px, -50px);
+  }
+  100% {
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+  }
+}

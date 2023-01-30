@@ -1,0 +1,17 @@
+.PageNotFound-container {
+  height: calc(100vh - 70px) !important;
+ 
+}
+
+.PageNotFound-container h2{
+    letter-spacing: 10px;
+    text-transform: capitalize;
+    font-family: cursive;
+   
+}
+.PageNotFound-container p {
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    font-family: monospace;
+    margin: 25px 0px;
+}
