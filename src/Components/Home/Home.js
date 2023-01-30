@@ -51,7 +51,7 @@ const Home = () => {
               />
             </h1>
             <span className="prof-role-tagline text-center py-5 fs-5">
-              I can building application with frontend and backend operations!
+              I can build application with frontend and backend operations!
             </span>
           </span>
           <div className="btn-box d-flex justify-content-center align-align-items-center p-5 ">
