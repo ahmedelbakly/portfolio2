@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <title>Ahmed Elbakly — Senior Full-Stack Engineer</title>
+    <meta
+      name="description"
+      content="Senior Full-Stack Engineer with 5+ years architecting multi-tenant SaaS platforms on Node.js, NestJS, React and Next.js. 9 production systems across real estate, EdTech, e-commerce and on-demand services."
+    />
+    <meta name="author" content="Ahmed Elbakly" />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ahmed Elbakly" />
+    <meta property="og:title" content="Ahmed Elbakly — Senior Full-Stack Engineer" />
+    <meta
+      property="og:description"
+      content="I architect multi-tenant SaaS platforms that scale. 5+ years, 9 production systems, sole technical owner."
+    />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_EG" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ahmed Elbakly — Senior Full-Stack Engineer" />
+    <meta
+      name="twitter:description"
+      content="I architect multi-tenant SaaS platforms that scale. 5+ years, 9 production systems, sole technical owner."
+    />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og.png" />
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="favicon.svg" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#08090b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)" />
+
+    <!-- Structured data: helps search engines render a rich person card -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ahmed Elbakly",
+        "jobTitle": "Senior Full-Stack Engineer",
+        "email": "mailto:dev.ahmed.elbakly@gmail.com",
+        "telephone": "+201092487660",
+        "url": "%VITE_SITE_URL%/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Dakahlia",
+          "addressCountry": "EG"
+        },
+        "sameAs": [
+          "https://github.com/ahmedelbakly",
+          "https://linkedin.com/in/elbaklymern"
+        ],
+        "knowsLanguage": ["ar", "en"],
+        "knowsAbout": [
+          "Node.js",
+          "NestJS",
+          "React",
+          "Next.js",
+          "TypeScript",
+          "MongoDB",
+          "PostgreSQL",
+          "Redis",
+          "Docker",
+          "Kubernetes",
+          "Multi-tenant SaaS architecture"
+        ]
+      }
+    </script>
+
+    <script>
+      // Resolve the theme before first paint so the page never flashes the
+      // wrong background. Mirrors the logic in src/theme/ThemeProvider.tsx.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('ae-theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark'
+          document.documentElement.dataset.theme = theme
+
+          var lang = localStorage.getItem('ae-lang')
+          if (lang === 'ar') {
+            document.documentElement.lang = 'ar'
+            document.documentElement.dir = 'rtl'
+          }
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark'
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      Ahmed Elbakly — Senior Full-Stack Engineer. This portfolio needs JavaScript enabled.
+      Reach me at dev.ahmed.elbakly@gmail.com.
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

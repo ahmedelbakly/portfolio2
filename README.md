@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Ahmed Elbakly — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Portfolio and case-study site for a senior full-stack engineer. Bilingual
+(English / Arabic) with full RTL support, light and dark themes, and a case
+study page per flagship project.
 
-## Available Scripts
+**Live:** https://ahmedelbakly.github.io/portfolio2/
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Concern    | Choice                                                        |
+| ---------- | ------------------------------------------------------------- |
+| Build      | Vite 6                                                        |
+| Language   | TypeScript (strict)                                           |
+| UI         | React 19, React Router 7                                      |
+| Styling    | Tailwind CSS v4 — theme tokens via `@theme inline`            |
+| Motion     | Framer Motion                                                  |
+| Fonts      | Inter, JetBrains Mono, Cairo — self-hosted via Fontsource      |
+| Mail       | EmailJS                                                        |
+| Deploy     | GitHub Pages                                                   |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting started
 
-### `npm test`
+```bash
+npm install
+cp .env.example .env   # fill in the EmailJS ids
+npm run dev
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Script              | Does                                                  |
+| ------------------- | ----------------------------------------------------- |
+| `npm run dev`       | Dev server on http://localhost:5173/portfolio2/        |
+| `npm run build`     | Typecheck, bundle to `dist/`, write the SPA fallback  |
+| `npm run preview`   | Serve the production bundle locally                   |
+| `npm run typecheck` | Types only                                            |
+| `npm run lint`      | ESLint                                                |
+| `npm run deploy`    | Build and publish `dist/` to the `gh-pages` branch    |
 
-### `npm run build`
+## Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+├── content/     Typed, bilingual content — the CV as data
+├── i18n/        Locale engine; ar.ts is typed against en.ts
+├── theme/       Light/dark provider, resolved pre-paint
+├── components/
+│   ├── ui/        Primitives (Button, Tag, Metric, Reveal, …)
+│   ├── layout/    Nav, Footer, ScrollManager
+│   └── sections/  Home page sections
+├── pages/       Home, CaseStudy, NotFound
+└── styles/      tokens.css (palettes) + app.css (Tailwind theme + base)
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Content is data, not markup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Everything a recruiter reads lives in `src/content/` as typed objects. A
+project is a `Project`; a bilingual string is a `Localized<T>`. Adding a case
+study means adding an object to `projects.ts` — no new components, and the
+route, the footer list and the prev/next navigation pick it up automatically.
 
-### `npm run eject`
+### Localisation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`ar.ts` is declared as `Dictionary`, the type derived from `en.ts`. A key that
+is renamed, removed or misspelled in one locale fails `npm run build` rather
+than rendering `undefined` in production.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Direction is a document attribute, not a per-component branch. Layout uses CSS
+logical properties throughout (`ps-*`, `border-s`, `-end-*`), so the Arabic
+locale mirrors without direction-specific overrides. Identifiers — technology
+names, figures, email addresses — are pinned `dir="ltr"` so they never reorder.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Theming
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Palettes are plain CSS variables in `tokens.css`, keyed off `data-theme` on the
+root element. `app.css` maps them into Tailwind's colour namespace with
+`@theme inline`, so `bg-canvas` and `text-fg` resolve to the live variable and
+the whole page re-colours on toggle without a rebuild. An inline script in
+`index.html` resolves the stored theme before first paint, so there is no flash.
 
-## Learn More
+### Deep links on GitHub Pages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+GitHub Pages has no SPA rewrite. `scripts/spa-fallback.mjs` copies the built
+`index.html` to `404.html` at the end of every build, so a direct hit on
+`/portfolio2/work/coonex` boots the app on the correct route.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Licence
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Content and design © Ahmed Elbakly. Code is available for reference.

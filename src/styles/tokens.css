@@ -1,0 +1,88 @@
+/* ==========================================================================
+   Theme palettes
+   Runtime CSS variables — the only place a colour is defined. `app.css` maps
+   these into Tailwind's colour namespace with `@theme inline`, so switching
+   `data-theme` re-colours every utility on the page without a rebuild.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Dark theme — the default. Deep neutral, never pure black, so elevation
+   reads through subtle lightness shifts rather than heavy borders.
+   -------------------------------------------------------------------------- */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --canvas: #08090b;
+  --surface: #0e1015;
+  --muted: #12151b;
+  --inset: #050607;
+
+  --line: rgb(255 255 255 / 8%);
+  --line-strong: rgb(255 255 255 / 15%);
+  --line-accent: rgb(124 140 255 / 35%);
+
+  --fg: #f3f4f6;
+  --fg-muted: #a2a8b3;
+  --fg-subtle: #6d747f;
+  --fg-inverse: #08090b;
+
+  --accent: #7c8cff;
+  --accent-hover: #939fff;
+  --accent-contrast: #06070c;
+  --accent-soft: rgb(124 140 255 / 12%);
+  --accent-softer: rgb(124 140 255 / 6%);
+
+  --positive: #3ddc97;
+
+  --shadow-card: 0 4px 16px -4px rgb(0 0 0 / 55%);
+  --shadow-float: 0 24px 60px -20px rgb(0 0 0 / 75%);
+
+  /* Faint dot grid and the radial wash behind the hero. */
+  --grid-dot: rgb(255 255 255 / 5%);
+  --hero-glow: radial-gradient(
+    60% 55% at 50% 0%,
+    rgb(124 140 255 / 13%) 0%,
+    transparent 72%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Light theme — warm-neutral paper rather than pure white, which keeps the
+   large display type from vibrating and matches the dark theme's softness.
+   -------------------------------------------------------------------------- */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --canvas: #fbfbfc;
+  --surface: #ffffff;
+  --muted: #f3f4f6;
+  --inset: #eceef1;
+
+  --line: rgb(9 10 12 / 10%);
+  --line-strong: rgb(9 10 12 / 18%);
+  --line-accent: rgb(74 91 212 / 35%);
+
+  --fg: #0b0c0f;
+  --fg-muted: #4b515b;
+  --fg-subtle: #757c88;
+  --fg-inverse: #fbfbfc;
+
+  --accent: #4a5bd4;
+  --accent-hover: #3a4ac0;
+  --accent-contrast: #ffffff;
+  --accent-soft: rgb(74 91 212 / 9%);
+  --accent-softer: rgb(74 91 212 / 5%);
+
+  --positive: #12855c;
+
+  --shadow-card: 0 4px 16px -4px rgb(9 10 12 / 10%);
+  --shadow-float: 0 24px 60px -20px rgb(9 10 12 / 18%);
+
+  --grid-dot: rgb(9 10 12 / 7%);
+  --hero-glow: radial-gradient(
+    60% 55% at 50% 0%,
+    rgb(74 91 212 / 8%) 0%,
+    transparent 72%
+  );
+}
