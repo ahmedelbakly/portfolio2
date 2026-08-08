@@ -19,47 +19,72 @@ function parseValue(value: string) {
   return {
     target: Number(match[1].replace(/,/g, '')),
     suffix: match[2],
-    formatted: match[1],
   }
 }
 
-function useCountUp(target: number, active: boolean, enabled: boolean) {
-  const [current, setCurrent] = useState(enabled ? 0 : target)
+/**
+ * True when the element occupies any part of the viewport right now.
+ *
+ * `useInView` alone is not enough: it observes a shrunken root, so an element
+ * sitting on the viewport edge — which is exactly where the hero metrics land
+ * — may never report an intersection. A figure that renders as zero because an
+ * observer stayed quiet is worse than one that simply does not animate, so the
+ * initial geometry is measured directly.
+ */
+function isOnScreen(element: HTMLElement | null) {
+  if (!element) return false
+  const rect = element.getBoundingClientRect()
+  return rect.top < window.innerHeight && rect.bottom > 0
+}
+
+export function Metric({ value, label, large = false }: MetricProps) {
+  const ref = useRef<HTMLDivElement>(null)
+  const observed = useInView(ref, { once: true, amount: 0.4 })
+  const shouldReduceMotion = useReducedMotion()
+
+  const parsed = parseValue(value)
+  const [visible, setVisible] = useState(false)
+
+  // Measure once on mount, then defer to the observer for anything that starts
+  // below the fold.
+  useEffect(() => {
+    if (isOnScreen(ref.current)) setVisible(true)
+  }, [])
+
+  const start = visible || observed
+  const animate = parsed !== null && !shouldReduceMotion
+  const [count, setCount] = useState(parsed?.target ?? 0)
 
   useEffect(() => {
-    if (!enabled || !active) return
+    if (!parsed) return
+
+    // Not animating, or not revealed yet — show the real figure, never zero.
+    if (!animate || !start) {
+      setCount(parsed.target)
+      return
+    }
+
     const duration = 900
+    const target = parsed.target
     let frame = 0
-    let start: number | null = null
+    let began: number | null = null
 
     const step = (timestamp: number) => {
-      if (start === null) start = timestamp
-      const progress = Math.min((timestamp - start) / duration, 1)
+      if (began === null) began = timestamp
+      const progress = Math.min((timestamp - began) / duration, 1)
       // easeOutExpo — fast arrival, gentle settle.
       const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
-      setCurrent(Math.round(eased * target))
+      setCount(Math.round(eased * target))
       if (progress < 1) frame = requestAnimationFrame(step)
     }
 
     frame = requestAnimationFrame(step)
     return () => cancelAnimationFrame(frame)
-  }, [target, active, enabled])
+    // `parsed` is derived from `value`; depending on the primitive keeps the
+    // effect from re-running on every render.
+  }, [value, animate, start]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  return enabled ? current : target
-}
-
-export function Metric({ value, label, large = false }: MetricProps) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-40px' })
-  const shouldReduceMotion = useReducedMotion()
-
-  const parsed = parseValue(value)
-  const animate = parsed !== null && !shouldReduceMotion
-  const count = useCountUp(parsed?.target ?? 0, inView, animate)
-
-  const display = parsed
-    ? `${animate ? count.toLocaleString('en-US') : parsed.formatted}${parsed.suffix}`
-    : value
+  const display = parsed ? `${count.toLocaleString('en-US')}${parsed.suffix}` : value
 
   return (
     // The rule sits on the leading edge, so it flips with the writing direction.

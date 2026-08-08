@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 // Project Pages sites are served from /<repo>/, so every asset URL needs the
 // repository name as its base path. Change this if the repo is ever renamed —
 // a mismatch here ships a page whose assets all 404.
-const REPO = 'portfolio2'
+const REPO = 'portfolio'
 export const BASE_PATH = `/${REPO}/`
 
 export default defineConfig({

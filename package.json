@@ -3,7 +3,7 @@
   "private": true,
   "version": "2.0.0",
   "type": "module",
-  "homepage": "https://ahmedelbakly.github.io/portfolio2/",
+  "homepage": "https://ahmedelbakly.github.io/portfolio/",
   "description": "Portfolio of Ahmed Elbakly — Senior Full-Stack Engineer",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,8 @@
     "typecheck": "tsc -b --noEmit",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "_comment_deploy": "Source lives in this repo; the site is published to the gh-pages branch of ahmedelbakly/portfolio, which owns the public URL.",
+    "deploy": "gh-pages -d dist -r https://github.com/ahmedelbakly/portfolio.git"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

@@ -4,7 +4,7 @@ Portfolio and case-study site for a senior full-stack engineer. Bilingual
 (English / Arabic) with full RTL support, light and dark themes, and a case
 study page per flagship project.
 
-**Live:** https://ahmedelbakly.github.io/portfolio2/
+**Live:** https://ahmedelbakly.github.io/portfolio/
 
 ---
 
@@ -31,7 +31,7 @@ npm run dev
 
 | Script              | Does                                                  |
 | ------------------- | ----------------------------------------------------- |
-| `npm run dev`       | Dev server on http://localhost:5173/portfolio2/        |
+| `npm run dev`       | Dev server on http://localhost:5173/portfolio/        |
 | `npm run build`     | Typecheck, bundle to `dist/`, write the SPA fallback  |
 | `npm run preview`   | Serve the production bundle locally                   |
 | `npm run typecheck` | Types only                                            |

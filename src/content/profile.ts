@@ -19,6 +19,7 @@ export const profile = {
     ar: 'الدقهلية، مصر',
   } satisfies Localized,
 
+  /** Default download — the broader of the two profiles. */
   resumeUrl: `${import.meta.env.BASE_URL}files/Ahmed-Elbakly-Senior-FullStack-Engineer-CV.pdf`,
 
   socials: [

@@ -12,6 +12,7 @@ export const en = {
 
   nav: {
     home: 'Home',
+    profiles: 'Profiles',
     work: 'Work',
     about: 'About',
     stack: 'Stack',
@@ -50,6 +51,18 @@ export const en = {
     ctaWork: 'View selected work',
     ctaContact: 'Get in touch',
     scrollHint: 'Scroll',
+  },
+
+  tracks: {
+    hiringFor: 'Hiring for',
+    switchLabel: 'Choose the profile that matches your role',
+    eyebrow: 'Two profiles, one body of work',
+    title: 'Backend depth, full-stack range',
+    subtitle:
+      'The same nine platforms, read two ways. Pick the lens that matches the role you are hiring for — the evidence below does not change, only the framing does.',
+    downloadCv: 'Download this CV',
+    viewing: 'Currently viewing',
+    competencies: 'Core competencies',
   },
 
   metrics: {

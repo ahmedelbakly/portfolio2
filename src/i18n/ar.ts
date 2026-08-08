@@ -14,6 +14,7 @@ export const ar: Dictionary = {
 
   nav: {
     home: 'الرئيسية',
+    profiles: 'البروفايلات',
     work: 'الأعمال',
     about: 'نبذة',
     stack: 'الأدوات',
@@ -52,6 +53,18 @@ export const ar: Dictionary = {
     ctaWork: 'استعرض الأعمال',
     ctaContact: 'تواصل معي',
     scrollHint: 'مرّر',
+  },
+
+  tracks: {
+    hiringFor: 'توظّف لدور',
+    switchLabel: 'اختر البروفايل المطابق للدور',
+    eyebrow: 'بروفايلان، عمل واحد',
+    title: 'عمق في الـ Backend واتساع في الـ Full-Stack',
+    subtitle:
+      'المنصات التسع نفسها، مقروءة بطريقتين. اختر العدسة المطابقة للدور الذي توظّف له — الأدلة أدناه لا تتغيّر، الإطار وحده هو الذي يتغيّر.',
+    downloadCv: 'تحميل هذه السيرة',
+    viewing: 'المعروض حالياً',
+    competencies: 'الكفاءات الأساسية',
   },
 
   metrics: {

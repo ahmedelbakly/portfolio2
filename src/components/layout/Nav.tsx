@@ -3,13 +3,15 @@ import { Link, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useI18n } from '@/i18n/useI18n'
 import { profile } from '@/content/profile'
+import { useTrack } from '@/track/useTrack'
 import { LocaleToggle, ThemeToggle } from './Toggles'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
 
-const SECTION_IDS = ['work', 'about', 'stack', 'experience', 'contact'] as const
+const SECTION_IDS = ['profiles', 'work', 'about', 'stack', 'experience', 'contact'] as const
 
 export function Nav() {
   const { t, pick } = useI18n()
+  const { track } = useTrack()
   const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -108,7 +110,7 @@ export function Nav() {
             <LocaleToggle />
             <ThemeToggle />
             <a
-              href={profile.resumeUrl}
+              href={track.resumeUrl}
               download
               className="hidden rounded-full border border-line-strong px-4 py-2 text-sm font-medium text-fg transition-colors duration-150 hover:bg-muted sm:inline-flex"
             >
@@ -170,7 +172,7 @@ export function Nav() {
               ))}
               <li className="pt-8">
                 <a
-                  href={profile.resumeUrl}
+                  href={track.resumeUrl}
                   download
                   className="inline-flex rounded-full border border-line-strong px-6 py-3 text-sm font-medium text-fg"
                 >

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useI18n } from '@/i18n/useI18n'
-import { profile, metrics } from '@/content/profile'
+import { useTrack } from '@/track/useTrack'
 import { ButtonAnchor, ButtonLink } from '@/components/ui/Button'
 import { Metric } from '@/components/ui/Metric'
+import { TrackSwitcher } from '@/components/ui/TrackSwitcher'
 
 /**
  * Cycles a list of phrases with a typing effect. Falls back to the first
@@ -14,7 +15,7 @@ function useRotatingPhrase(phrases: string[], enabled: boolean) {
   const [text, setText] = useState(enabled ? '' : phrases[0])
   const [deleting, setDeleting] = useState(false)
 
-  // Reset when the locale swaps the phrase list under us.
+  // Restart when the locale or the active track swaps the phrase list.
   useEffect(() => {
     setIndex(0)
     setText(enabled ? '' : phrases[0])
@@ -51,9 +52,10 @@ function useRotatingPhrase(phrases: string[], enabled: boolean) {
 }
 
 export function Hero() {
-  const { t } = useI18n()
+  const { t, pick } = useI18n()
+  const { track, trackId } = useTrack()
   const shouldReduceMotion = useReducedMotion()
-  const phrase = useRotatingPhrase(t.hero.rotating, !shouldReduceMotion)
+  const phrase = useRotatingPhrase(pick(track.rotating), !shouldReduceMotion)
 
   const entrance = (delay: number) =>
     shouldReduceMotion
@@ -63,6 +65,17 @@ export function Hero() {
           animate: { opacity: 1, y: 0 },
           transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
         }
+
+  // Content that swaps with the track shares one transition, so the block
+  // reads as a single change rather than several independent ones.
+  const swap = shouldReduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 10 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -10 },
+        transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] as const },
+      }
 
   return (
     <section className="relative overflow-hidden pt-nav">
@@ -90,17 +103,32 @@ export function Hero() {
             <span className="mono mb-3 block text-base text-accent ar:font-arabic">
               {t.hero.name}
             </span>
-            <span className="block text-5xl font-semibold tracking-tighter text-fg ar:tracking-normal">
-              {t.hero.role}
+            {/* min-h holds the row so switching tracks never jumps the page. */}
+            <span className="block min-h-[2.1em] sm:min-h-[1.1em]">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={trackId}
+                  {...swap}
+                  className="block text-5xl font-semibold tracking-tighter text-fg ar:tracking-normal"
+                >
+                  {pick(track.role)}
+                </motion.span>
+              </AnimatePresence>
             </span>
           </motion.h1>
 
+          <motion.div {...entrance(0.14)} className="mt-8 flex flex-wrap items-center gap-3">
+            <span className="mono text-2xs tracking-widest text-fg-subtle uppercase ar:font-arabic ar:text-xs ar:tracking-normal ar:normal-case">
+              {t.tracks.hiringFor}
+            </span>
+            <TrackSwitcher />
+          </motion.div>
+
           {/* The rotating line. Plain inline flow — a flex row here would
-              swallow the spaces around the phrase. `min-h` reserves the row so
-              nothing below shifts as the phrase types and deletes. */}
+              swallow the spaces around the phrase. */}
           <motion.p
-            {...entrance(0.16)}
-            className="mt-6 min-h-[3.5em] max-w-3xl text-xl text-fg-muted sm:min-h-[2.5em]"
+            {...entrance(0.2)}
+            className="mt-8 min-h-[3.5em] max-w-3xl text-xl text-fg-muted sm:min-h-[2.5em]"
           >
             {t.hero.lead}
             <span className="text-fg">{phrase}</span>
@@ -111,31 +139,43 @@ export function Hero() {
             {t.hero.leadSuffix}
           </motion.p>
 
-          <motion.p {...entrance(0.24)} className="mt-6 max-w-prose text-base text-fg-subtle">
-            {t.hero.summary}
-          </motion.p>
+          <motion.div {...entrance(0.26)} className="mt-6 min-h-[5.5em] max-w-prose sm:min-h-[4.5em]">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.p key={trackId} {...swap} className="text-base text-fg-subtle">
+                {pick(track.summary)}
+              </motion.p>
+            </AnimatePresence>
+          </motion.div>
 
-          <motion.div {...entrance(0.32)} className="mt-10 flex flex-wrap items-center gap-3">
+          <motion.div {...entrance(0.32)} className="mt-8 flex flex-wrap items-center gap-3">
             <ButtonAnchor href="#work" variant="primary" size="lg" withArrow>
               {t.hero.ctaWork}
             </ButtonAnchor>
             <ButtonLink to="/#contact" variant="secondary" size="lg">
               {t.hero.ctaContact}
             </ButtonLink>
-            <ButtonAnchor href={profile.resumeUrl} download variant="ghost">
+            {/* Downloads whichever CV matches the selected profile. */}
+            <ButtonAnchor
+              key={trackId}
+              href={track.resumeUrl}
+              download
+              variant="ghost"
+              aria-label={`${t.actions.downloadResume} — ${pick(track.role)}`}
+            >
               {t.actions.downloadResume}
             </ButtonAnchor>
           </motion.div>
 
           <motion.div
             {...entrance(0.42)}
-            className="mt-20 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4"
+            className="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4"
           >
-            {metrics.map((metric) => (
+            {track.metrics.map((metric) => (
+              // Keyed by track so the figures re-run their count-up on switch.
               <Metric
-                key={metric.key}
+                key={`${trackId}-${metric.value}`}
                 value={metric.value}
-                label={t.metrics[metric.key]}
+                label={pick(metric.label)}
                 large
               />
             ))}

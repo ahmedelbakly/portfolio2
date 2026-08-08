@@ -1,4 +1,5 @@
 import { Hero } from '@/components/sections/Hero'
+import { Tracks } from '@/components/sections/Tracks'
 import { Work } from '@/components/sections/Work'
 import { About } from '@/components/sections/About'
 import { Stack } from '@/components/sections/Stack'
@@ -9,6 +10,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <Tracks />
       <Work />
       <About />
       <Stack />

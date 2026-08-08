@@ -72,15 +72,15 @@ export const projects: Project[] = [
       en: [
         'Multi-tenant CRM managing 500+ properties and 1,000+ leads across lead management, campaigns, sales pipelines, meetings, documents and analytics.',
         'Enterprise frontend of 144+ pages and 12+ business modules with CASL-based permissions and a disciplined state architecture.',
-        'Stripe billing and subscription management, turning the platform into a self-serve revenue product.',
-        'Socket.IO notification layer delivering instant updates instead of polling.',
+        'Stripe billing and subscription management enabling recurring revenue and self-service plan changes for agency customers.',
+        'Socket.IO notification layer delivering instant updates across sales pipelines, meetings and documents instead of polling.',
         'Separate B2B admin dashboard with RBAC, analytics, reporting and invoice management for central tenant and revenue control.',
       ],
       ar: [
         'منصة CRM متعددة المستأجرين تدير أكثر من ٥٠٠ عقار وأكثر من ١٠٠٠ عميل محتمل، عبر إدارة العملاء والحملات وخطوط البيع والاجتماعات والمستندات والتحليلات.',
         'واجهة أمامية مؤسسية بأكثر من ١٤٤ صفحة و١٢ موديول عمل، مع صلاحيات مبنية على CASL ومعمارية حالة منضبطة.',
-        'فوترة واشتراكات عبر Stripe، حوّلت المنصة إلى منتج إيرادات ذاتي الخدمة.',
-        'طبقة إشعارات عبر Socket.IO تُسلّم التحديثات لحظياً بدل الاستطلاع الدوري.',
+        'فوترة واشتراكات عبر Stripe مكّنت إيرادات متكرّرة وتغيير الباقات ذاتياً لعملاء الوكالات.',
+        'طبقة إشعارات عبر Socket.IO تُسلّم التحديثات لحظياً عبر خطوط البيع والاجتماعات والمستندات بدل الاستطلاع الدوري.',
         'لوحة تحكم B2B منفصلة بصلاحيات RBAC وتحليلات وتقارير وإدارة فواتير، للتحكم المركزي في المستأجرين والإيرادات.',
       ],
     },
@@ -189,18 +189,18 @@ export const projects: Project[] = [
     highlights: {
       en: [
         '43 backend modules spanning academics, attendance, payroll, fee collection, communication and reporting.',
-        '25+ module multi-role frontend for Admin, School Manager, Teacher, Student, Parent and Driver, with granular RBAC restricting sensitive data per role.',
+        '25+ module multi-role frontend for Admin, School Manager, Teacher, Student, Parent and Driver, with granular RBAC keeping sensitive academic and payroll data visible only to the right audience within each tenant.',
         'Real-time chat, push notifications, maps and analytics dashboards.',
         'Complete English/Arabic support with full RTL, widening adoption across bilingual MENA schools.',
-        'Cron-automated recurring operations, Twilio, Firebase and AWS S3 integrations, and Excel export pipelines.',
+        'Cron-automated recurring school operations, plus Twilio SMS, Firebase notifications, AWS S3 storage and Excel export pipelines, removing manual administrative effort.',
         'Core services covered with Jest tests.',
       ],
       ar: [
         '٤٣ موديولاً خلفياً تغطي الشؤون الأكاديمية والحضور والرواتب وتحصيل الرسوم والتواصل والتقارير.',
-        'واجهة متعددة الأدوار بأكثر من ٢٥ موديولاً للمدير ومدير المدرسة والمعلّم والطالب وولي الأمر والسائق، بصلاحيات RBAC دقيقة تحصر البيانات الحساسة لكل دور.',
+        'واجهة متعددة الأدوار بأكثر من ٢٥ موديولاً للمدير ومدير المدرسة والمعلّم والطالب وولي الأمر والسائق، بصلاحيات RBAC دقيقة تُبقي البيانات الأكاديمية والرواتب مرئية لمن يخصّه الأمر فقط داخل كل مستأجر.',
         'محادثة لحظية وإشعارات فورية وخرائط ولوحات تحليلات.',
         'دعم كامل للعربية والإنجليزية مع RTL كامل، وسّع الانتشار في المدارس ثنائية اللغة بالمنطقة.',
-        'عمليات دورية مؤتمتة عبر cron، وتكاملات Twilio و Firebase و AWS S3، وخطوط تصدير إلى Excel.',
+        'أتمتة العمليات المدرسية المتكرّرة عبر cron، وتكاملات رسائل Twilio وإشعارات Firebase وتخزين AWS S3 وخطوط تصدير إلى Excel، بما أزال الجهد الإداري اليدوي.',
         'تغطية الخدمات الأساسية باختبارات Jest.',
       ],
     },
@@ -308,16 +308,20 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Backend services powering 90+ feature modules across ride-hailing, food delivery, hotel booking, live streaming, social networking and marketplace verticals.',
-        'Redis caching that cut database load and improved response times on read-heavy paths.',
-        'BullMQ workers and cron jobs absorbing heavy work to protect API latency.',
+        'Consolidated ride-hailing, food delivery, hotel booking, live streaming, social networking and marketplace services into a single backend of 90+ feature modules, avoiding a fragmented estate of disconnected apps.',
+        'Structured the service layer around shared domain models and modular boundaries, so each vertical could evolve independently while reusing authentication, payments and notification infrastructure.',
+        'Redis caching for hot reads that cut database load and improved response times on the highest-traffic endpoints.',
+        'BullMQ workers and cron jobs absorbing heavy background processing to protect API latency.',
+        'Socket.IO powering live location and messaging flows across the ride-hailing and delivery verticals.',
         'RBAC with audit logging across every privileged operation.',
         'Integrations with Agora, LiveKit, Google Maps, Mapbox, Firebase, AWS S3 and multiple payment gateways.',
       ],
       ar: [
-        'خدمات خلفية تشغّل أكثر من ٩٠ موديولاً عبر قطاعات النقل وتوصيل الطعام وحجز الفنادق والبث المباشر والتواصل الاجتماعي والسوق.',
-        'تخزين مؤقت عبر Redis خفّض الحِمل على قاعدة البيانات وحسّن أزمنة الاستجابة في المسارات كثيفة القراءة.',
-        'عمّال BullMQ ومهام cron يمتصّون الأعمال الثقيلة لحماية زمن استجابة الـ API.',
+        'وحّدت خدمات النقل وتوصيل الطعام وحجز الفنادق والبث المباشر والتواصل الاجتماعي والسوق في واجهة خلفية واحدة بأكثر من ٩٠ موديولاً، بدل تركة مبعثرة من تطبيقات منفصلة.',
+        'بنيت طبقة الخدمات حول نماذج مجال مشتركة وحدود موديولية، فأمكن لكل قطاع أن يتطوّر باستقلال مع إعادة استخدام بنية المصادقة والمدفوعات والإشعارات نفسها.',
+        'تخزين مؤقت عبر Redis للقراءات الساخنة خفّض الحِمل على قاعدة البيانات وحسّن أزمنة الاستجابة في أكثر النقاط ازدحاماً.',
+        'عمّال BullMQ ومهام cron يمتصّون المعالجة الخلفية الثقيلة لحماية زمن استجابة الـ API.',
+        'Socket.IO يشغّل تدفّقات الموقع اللحظي والمراسلة عبر قطاعَي النقل والتوصيل.',
         'صلاحيات RBAC مع تسجيل تدقيق لكل عملية ذات امتياز.',
         'تكاملات مع Agora و LiveKit و Google Maps و Mapbox و Firebase و AWS S3 وعدة بوابات دفع.',
       ],
@@ -368,6 +372,16 @@ export const projects: Project[] = [
         body: {
           en: 'Redis fronts the read-heavy catalogue and geo lookups, but every path still works with an empty cache. A cache that can take the platform down with it is not an optimisation, it is a second database with worse durability guarantees.',
           ar: 'يتصدّر Redis استعلامات الكتالوج والموقع كثيفة القراءة، لكن كل مسار يظل عاملاً مع تخزين مؤقت فارغ. التخزين المؤقت الذي يستطيع إسقاط المنصة معه ليس تحسيناً، بل قاعدة بيانات ثانية بضمانات ديمومة أسوأ.',
+        },
+      },
+      {
+        title: {
+          en: 'Shared domain models, independent verticals',
+          ar: 'نماذج مجال مشتركة وقطاعات مستقلة',
+        },
+        body: {
+          en: 'Six product lines will diverge — that is the point of six product lines. Structuring the service layer around shared domain models with modular boundaries let each vertical evolve on its own schedule while still reusing one authentication, payments and notification stack, instead of six copies drifting apart.',
+          ar: 'ستة خطوط منتجات ستتباعد — وهذا هو المقصود من وجود ستة خطوط. بناء طبقة الخدمات حول نماذج مجال مشتركة بحدود موديولية أتاح لكل قطاع أن يتطوّر بجدوله الخاص مع إبقاء منظومة واحدة للمصادقة والمدفوعات والإشعارات، بدل ست نسخ تتباعد شيئاً فشيئاً.',
         },
       },
       {

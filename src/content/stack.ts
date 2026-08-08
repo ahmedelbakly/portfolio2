@@ -51,7 +51,16 @@ export const stackGroups: StackGroup[] = [
   },
   {
     key: 'data',
-    items: ['MongoDB', 'Mongoose', 'PostgreSQL', 'MySQL', 'Redis', 'Prisma'],
+    items: [
+      'MongoDB',
+      'Mongoose',
+      'PostgreSQL',
+      'MySQL',
+      'Redis',
+      'Prisma',
+      'Schema design',
+      'Query tuning',
+    ],
   },
   {
     key: 'cloud',
@@ -76,6 +85,13 @@ export const stackGroups: StackGroup[] = [
   },
   {
     key: 'practices',
-    items: ['Git', 'Jest', 'Postman', 'Code review', 'Agile / Scrum'],
+    items: [
+      'System design',
+      'Git',
+      'Jest',
+      'Postman',
+      'Code review',
+      'Agile / Scrum',
+    ],
   },
 ]

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ahmedelbakly.github.io/portfolio2/sitemap.xml
+Sitemap: https://ahmedelbakly.github.io/portfolio/sitemap.xml

@@ -2,14 +2,14 @@
   "name": "Ahmed Elbakly — Senior Full-Stack Engineer",
   "short_name": "Ahmed Elbakly",
   "description": "Portfolio and case studies of Ahmed Elbakly, Senior Full-Stack Engineer.",
-  "start_url": "/portfolio2/",
-  "scope": "/portfolio2/",
+  "start_url": "/portfolio/",
+  "scope": "/portfolio/",
   "display": "standalone",
   "background_color": "#08090b",
   "theme_color": "#08090b",
   "icons": [
     {
-      "src": "/portfolio2/favicon.svg",
+      "src": "/portfolio/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
