@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollManager } from '@/components/layout/ScrollManager'
+import { DocumentHead } from '@/components/layout/DocumentHead'
 import HomePage from '@/pages/HomePage'
 
 // The home page is the entry point for almost every visit, so it stays in the
@@ -20,6 +21,7 @@ export default function App() {
   return (
     <>
       <ScrollManager />
+      <DocumentHead />
       <Nav />
       <main id="main">
         <Suspense fallback={<RouteFallback />}>
