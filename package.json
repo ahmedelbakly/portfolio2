@@ -4,10 +4,10 @@
   "version": "2.0.0",
   "type": "module",
   "homepage": "https://ahmedelbakly.github.io/portfolio/",
-  "description": "Portfolio of Ahmed Elbakly — Senior Full-Stack Engineer",
+  "description": "Portfolio of Ahmed Elbakly \u2014 Senior Full-Stack Engineer",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/spa-fallback.mjs",
+    "dev": "node init && vite",
+    "build": "node init && tsc -b && vite build && node scripts/prerender-meta.mjs && node scripts/spa-fallback.mjs",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
     "lint": "eslint .",

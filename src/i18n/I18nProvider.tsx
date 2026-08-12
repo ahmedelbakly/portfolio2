@@ -22,15 +22,13 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(readInitialLocale)
 
   // Keep the document in sync so CSS logical properties, font stacks and
-  // assistive tech all follow the active locale.
+  // assistive tech all follow the active locale. Title and description are
+  // owned by <DocumentHead>, which also knows the active route — setting them
+  // here would overwrite a case study's title with the site's.
   useEffect(() => {
     const root = document.documentElement
     root.lang = locale
     root.dir = DIRECTION[locale]
-    document.title = DICTIONARIES[locale].meta.title
-
-    const description = document.querySelector('meta[name="description"]')
-    description?.setAttribute('content', DICTIONARIES[locale].meta.description)
 
     try {
       window.localStorage.setItem(LOCALE_STORAGE_KEY, locale)
