@@ -1,4 +1,6 @@
-import { Link, type LinkProps } from 'react-router-dom'
+'use client'
+
+import Link, { type LinkProps } from 'next/link'
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
 
 type Variant = 'primary' | 'secondary' | 'ghost'
@@ -90,7 +92,7 @@ export function ButtonLink({
   withArrow,
   children,
   ...rest
-}: Styling & LinkProps) {
+}: Styling & LinkProps & { children: ReactNode }) {
   return (
     <Link className={cx({ variant, size, className })} {...rest}>
       <Body withArrow={withArrow}>{children}</Body>

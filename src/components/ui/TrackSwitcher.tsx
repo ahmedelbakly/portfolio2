@@ -1,3 +1,5 @@
+'use client'
+
 import { motion, useReducedMotion } from 'framer-motion'
 import { useI18n } from '@/i18n/useI18n'
 import { useTrack } from '@/track/useTrack'

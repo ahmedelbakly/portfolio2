@@ -1,3 +1,5 @@
+'use client'
+
 import { useI18n } from '@/i18n/useI18n'
 import { useTrack } from '@/track/useTrack'
 import { tracks } from '@/content/tracks'

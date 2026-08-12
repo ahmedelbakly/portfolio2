@@ -1,6 +1,11 @@
+'use client'
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useI18n } from '@/i18n/useI18n'
 import { useTheme } from '@/theme/useTheme'
 import { LOCALE_SHORT } from '@/i18n/types'
+import { localisePath, otherLocale } from '@/i18n/config'
 
 const CONTROL =
   'inline-flex items-center justify-center rounded-full border border-line text-fg-muted ' +
@@ -54,14 +59,20 @@ export function ThemeToggle() {
   )
 }
 
+/**
+ * Language switch. Each locale is its own route, so this is navigation rather
+ * than state — which is what lets both languages be indexed, and removes the
+ * content flash the client-side version had.
+ */
 export function LocaleToggle() {
-  const { locale, toggleLocale, t } = useI18n()
-  const next = locale === 'en' ? 'ar' : 'en'
+  const { locale, t } = useI18n()
+  const pathname = usePathname() ?? '/'
+  const next = otherLocale(locale)
 
   return (
-    <button
-      type="button"
-      onClick={toggleLocale}
+    <Link
+      href={localisePath(pathname, next)}
+      hrefLang={next}
       className={`${CONTROL} mono h-9 gap-1 px-3 text-xs font-medium`}
       aria-label={t.actions.switchLanguage}
       title={t.actions.switchLanguage}
@@ -75,7 +86,6 @@ export function LocaleToggle() {
       <span className={locale === 'ar' ? 'text-fg' : 'text-fg-subtle'}>
         {LOCALE_SHORT.ar}
       </span>
-      <span className="sr-only">{LOCALE_SHORT[next]}</span>
-    </button>
+    </Link>
   )
 }

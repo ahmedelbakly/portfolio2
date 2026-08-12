@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
 import { useI18n } from '@/i18n/useI18n'
 import { profile } from '@/content/profile'
 import { projects } from '@/content/projects'
+import { localeHref, projectHref } from '@/lib/paths'
 
 const SECTION_IDS = ['work', 'about', 'stack', 'contact'] as const
 
 export function Footer() {
-  const { t, pick } = useI18n()
+  const { t, pick, locale } = useI18n()
   const year = new Date().getFullYear()
 
   return (
@@ -14,7 +17,7 @@ export function Footer() {
       <div className="container-page py-16">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div className="flex flex-col gap-4">
-            <Link to="/" className="flex items-center gap-2.5">
+            <Link href={localeHref(locale)} className="flex items-center gap-2.5">
               <span
                 aria-hidden="true"
                 className="mono grid size-8 place-items-center rounded-md border border-line bg-canvas text-xs text-accent"
@@ -46,7 +49,7 @@ export function Footer() {
               {SECTION_IDS.map((id) => (
                 <li key={id}>
                   <a
-                    href={`/#${id}`}
+                    href={`${localeHref(locale)}#${id}`}
                     className="text-sm text-fg-muted transition-colors hover:text-fg"
                   >
                     {t.nav[id]}
@@ -67,7 +70,7 @@ export function Footer() {
               {projects.map((project) => (
                 <li key={project.slug}>
                   <Link
-                    to={`/work/${project.slug}`}
+                    href={projectHref(locale, project.slug)}
                     className="text-sm text-fg-muted transition-colors hover:text-fg"
                   >
                     {project.name}

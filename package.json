@@ -6,40 +6,38 @@
   "homepage": "https://ahmedelbakly.github.io/portfolio/",
   "description": "Portfolio of Ahmed Elbakly — Senior Full-Stack Engineer",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/prerender-meta.mjs && node scripts/spa-fallback.mjs",
-    "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "_comment_deploy": "Source lives in this repo; the site is published to the gh-pages branch of ahmedelbakly/portfolio, which owns the public URL.",
-    "deploy": "gh-pages -d dist -r https://github.com/ahmedelbakly/portfolio.git"
+    "deploy": "gh-pages -d out -r https://github.com/ahmedelbakly/portfolio.git"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@fontsource-variable/cairo": "^5.2.5",
     "@fontsource-variable/inter": "^5.2.5",
     "@fontsource-variable/jetbrains-mono": "^5.2.5",
-    "@tailwindcss/vite": "^4.0.9",
     "framer-motion": "^12.4.7",
+    "next": "^15.5.23",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.18.2",
     "tailwindcss": "^4.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.1.2",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.21.0",
+    "eslint-config-next": "^16.3.0",
     "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
     "gh-pages": "^6.3.0",
     "globals": "^16.0.0",
+    "postcss": "^8.5.26",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.24.1",
-    "vite": "^6.2.0"
+    "typescript-eslint": "^8.24.1"
   }
 }

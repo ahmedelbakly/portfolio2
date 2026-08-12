@@ -1,3 +1,5 @@
+'use client'
+
 import { useI18n } from '@/i18n/useI18n'
 import { roles, capabilities, education } from '@/content/experience'
 import { Section } from '@/components/ui/Section'

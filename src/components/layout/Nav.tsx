@@ -1,23 +1,29 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useI18n } from '@/i18n/useI18n'
-import { profile } from '@/content/profile'
 import { useTrack } from '@/track/useTrack'
+import { profile } from '@/content/profile'
 import { LocaleToggle, ThemeToggle } from './Toggles'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
+import { localeHref, sectionHref } from '@/lib/paths'
 
 const SECTION_IDS = ['profiles', 'work', 'about', 'stack', 'experience', 'contact'] as const
 
 export function Nav() {
-  const { t, pick } = useI18n()
+  const { t, pick, locale } = useI18n()
   const { track } = useTrack()
-  const { pathname } = useLocation()
+  const pathname = usePathname() ?? '/'
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const isHome = pathname === '/'
-  const activeSection = useScrollSpy(isHome ? SECTION_IDS : [])
+  // The home route for a locale is exactly /<locale>/ — anything deeper is a
+  // case study, where section anchors have to route home first.
+  const onHome = /^\/(en|ar)\/?$/.test(pathname)
+  const activeSection = useScrollSpy(onHome ? SECTION_IDS : [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -45,18 +51,18 @@ export function Nav() {
     return () => window.removeEventListener('keydown', onKey)
   }, [menuOpen])
 
-  // On a case study page the section anchors have to route home first.
-  const href = (id: string) => (isHome ? `#${id}` : `/#${id}`)
-
   const links = SECTION_IDS.map((id) => ({
     id,
-    href: href(id),
+    href: sectionHref(locale, id, onHome),
     label: t.nav[id],
   }))
 
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-100 focus:m-3 focus:rounded-md focus:bg-accent focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-accent-contrast">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-100 focus:m-3 focus:rounded-md focus:bg-accent focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-accent-contrast"
+      >
         {t.nav.skipToContent}
       </a>
 
@@ -72,7 +78,7 @@ export function Nav() {
           aria-label={t.nav.home}
         >
           <Link
-            to="/"
+            href={localeHref(locale)}
             className="group flex items-center gap-2.5 text-sm font-semibold tracking-tight text-fg"
           >
             <span

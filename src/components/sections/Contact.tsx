@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef, useState, type FormEvent } from 'react'
 import emailjs from '@emailjs/browser'
 import { useI18n } from '@/i18n/useI18n'
@@ -6,9 +8,9 @@ import { Section } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { Button } from '@/components/ui/Button'
 
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 type FieldName = 'name' | 'email' | 'message'

@@ -1,8 +1,10 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useI18n } from '@/i18n/useI18n'
 import { useTrack } from '@/track/useTrack'
-import { ButtonAnchor, ButtonLink } from '@/components/ui/Button'
+import { ButtonAnchor } from '@/components/ui/Button'
 import { Metric } from '@/components/ui/Metric'
 import { TrackSwitcher } from '@/components/ui/TrackSwitcher'
 
@@ -57,8 +59,15 @@ export function Hero() {
   const shouldReduceMotion = useReducedMotion()
   const phrase = useRotatingPhrase(pick(track.rotating), !shouldReduceMotion)
 
+  // The hero is above the fold, so its entrance must not be expressed as an
+  // `initial` opacity: framer-motion writes that inline, and the statically
+  // generated page would ship with an invisible hero for anyone without
+  // JavaScript. Animating only after mount keeps the server markup visible.
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
   const entrance = (delay: number) =>
-    shouldReduceMotion
+    shouldReduceMotion || !mounted
       ? {}
       : {
           initial: { opacity: 0, y: 20 },
@@ -151,9 +160,9 @@ export function Hero() {
             <ButtonAnchor href="#work" variant="primary" size="lg" withArrow>
               {t.hero.ctaWork}
             </ButtonAnchor>
-            <ButtonLink to="/#contact" variant="secondary" size="lg">
+            <ButtonAnchor href="#contact" variant="secondary" size="lg">
               {t.hero.ctaContact}
-            </ButtonLink>
+            </ButtonAnchor>
             {/* Downloads whichever CV matches the selected profile. */}
             <ButtonAnchor
               key={trackId}

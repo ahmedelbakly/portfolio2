@@ -1,6 +1,9 @@
+'use client'
+
 import { useI18n } from '@/i18n/useI18n'
 import { Section } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
+import Image from 'next/image'
 import portrait from '@/assets/images/myPhoto.jpg'
 
 export function About() {
@@ -32,7 +35,7 @@ export function About() {
                 bright hole in the dark theme. */}
             <figure className="relative w-fit">
               <div className="relative w-48 overflow-hidden rounded-lg border border-line sm:w-56">
-                <img
+                <Image
                   src={portrait}
                   alt={t.about.portraitAlt}
                   width={320}

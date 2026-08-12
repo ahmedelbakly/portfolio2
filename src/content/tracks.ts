@@ -88,7 +88,7 @@ export const tracks: Track[] = [
         'الملكية التقنية وتسليم العملاء',
       ],
     },
-    resumeUrl: `${import.meta.env.BASE_URL}files/Ahmed-Elbakly-Senior-FullStack-Engineer-CV.pdf`,
+    resumeUrl: '/files/Ahmed-Elbakly-Senior-FullStack-Engineer-CV.pdf',
   },
   {
     id: 'backend',
@@ -153,7 +153,7 @@ export const tracks: Track[] = [
         'خطوط النشر والحاويات',
       ],
     },
-    resumeUrl: `${import.meta.env.BASE_URL}files/Ahmed-Elbakly-Senior-Backend-Engineer-CV.pdf`,
+    resumeUrl: '/files/Ahmed-Elbakly-Senior-Backend-Engineer-CV.pdf',
   },
 ]
 

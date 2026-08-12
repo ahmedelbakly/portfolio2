@@ -9,10 +9,6 @@ export interface I18nValue {
   t: Dictionary
   /** Resolves a `Localized<T>` content value to the active locale. */
   pick: <T>(value: Localized<T>) => T
-  setLocale: (locale: Locale) => void
-  toggleLocale: () => void
 }
 
 export const I18nContext = createContext<I18nValue | null>(null)
-
-export const LOCALE_STORAGE_KEY = 'ae-lang'

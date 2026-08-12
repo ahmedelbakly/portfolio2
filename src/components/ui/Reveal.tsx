@@ -1,5 +1,7 @@
+'use client'
+
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import type { ReactNode } from 'react'
 
 interface RevealProps {
   children: ReactNode
@@ -12,8 +14,17 @@ interface RevealProps {
 }
 
 /**
- * Scroll-triggered entrance. Fires once, respects `prefers-reduced-motion`,
- * and keeps every animated element on the same easing curve.
+ * Scroll-triggered entrance that never hides content it cannot animate.
+ *
+ * The naive version renders `initial={{ opacity: 0 }}`, which framer-motion
+ * writes as an inline style. In a statically generated page that means the
+ * markup ships invisible: crawlers see the text, humans without JavaScript see
+ * a blank page, and the whole point of pre-rendering is lost.
+ *
+ * So the server output — and the first client render, which must match it — is
+ * plain, visible markup. After mount, only elements still below the fold opt
+ * into the animation. Anything already on screen has been seen and stays put
+ * rather than flashing out and back in.
  */
 export function Reveal({
   children,
@@ -23,10 +34,25 @@ export function Reveal({
   as = 'div',
 }: RevealProps) {
   const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLElement>(null)
+  const [animate, setAnimate] = useState(false)
 
-  if (shouldReduceMotion) {
-    const Tag = as
-    return <Tag className={className}>{children}</Tag>
+  useEffect(() => {
+    if (shouldReduceMotion) return
+    const element = ref.current
+    if (!element) return
+    // Below the fold at mount — the reader has not seen it yet.
+    if (element.getBoundingClientRect().top > window.innerHeight) setAnimate(true)
+  }, [shouldReduceMotion])
+
+  const Tag = as
+
+  if (!animate) {
+    return (
+      <Tag ref={ref as React.Ref<never>} className={className}>
+        {children}
+      </Tag>
+    )
   }
 
   const MotionTag = motion[as]

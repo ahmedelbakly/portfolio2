@@ -1,3 +1,5 @@
+'use client'
+
 import { use } from 'react'
 import { I18nContext, type I18nValue } from './context'
 

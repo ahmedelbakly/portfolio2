@@ -20,7 +20,7 @@ export const profile = {
   } satisfies Localized,
 
   /** Default download — the broader of the two profiles. */
-  resumeUrl: `${import.meta.env.BASE_URL}files/Ahmed-Elbakly-Senior-FullStack-Engineer-CV.pdf`,
+  resumeUrl: '/files/Ahmed-Elbakly-Senior-FullStack-Engineer-CV.pdf',
 
   socials: [
     { id: 'github', label: 'GitHub', href: 'https://github.com/ahmedelbakly' },

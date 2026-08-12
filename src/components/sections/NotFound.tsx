@@ -1,8 +1,11 @@
+'use client'
+
 import { useI18n } from '@/i18n/useI18n'
 import { ButtonLink } from '@/components/ui/Button'
+import { localeHref } from '@/lib/paths'
 
-export default function NotFoundPage() {
-  const { t } = useI18n()
+export function NotFound() {
+  const { t, locale } = useI18n()
 
   return (
     <section className="relative flex min-h-dvh items-center overflow-hidden pt-nav">
@@ -18,7 +21,7 @@ export default function NotFoundPage() {
           {t.notFound.title}
         </h1>
         <p className="max-w-prose text-lg text-fg-muted">{t.notFound.body}</p>
-        <ButtonLink to="/" size="lg" withArrow className="mt-2">
+        <ButtonLink href={localeHref(locale)} size="lg" withArrow className="mt-2">
           {t.notFound.cta}
         </ButtonLink>
       </div>

@@ -1,17 +1,19 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
 import { useI18n } from '@/i18n/useI18n'
 import { getAdjacentProjects, getProject } from '@/content/projects'
 import { Reveal } from '@/components/ui/Reveal'
 import { Metric } from '@/components/ui/Metric'
 import { TagList } from '@/components/ui/Tag'
 import { ArchitectureDiagram } from '@/components/ui/ArchitectureDiagram'
+import { localeHref, projectHref } from '@/lib/paths'
 
-export default function CaseStudyPage() {
-  const { slug } = useParams<{ slug: string }>()
-  const { t, pick } = useI18n()
+export function CaseStudy({ slug }: { slug: string }) {
+  const { t, pick, locale } = useI18n()
   const project = getProject(slug)
 
-  if (!project) return <Navigate to="/404" replace />
+  if (!project) return null
 
   const { previous, next } = getAdjacentProjects(project.slug)
 
@@ -28,7 +30,7 @@ export default function CaseStudyPage() {
         <div className="container-page relative py-16 lg:py-24">
           <Reveal>
             <Link
-              to="/#work"
+              href={`${localeHref(locale)}#work`}
               className="group mono inline-flex items-center gap-2 text-2xs text-fg-muted transition-colors hover:text-accent"
             >
               <svg
@@ -157,7 +159,7 @@ export default function CaseStudyPage() {
         <div className="container-page grid gap-px md:grid-cols-2">
           {previous && (
             <AdjacentLink
-              to={`/work/${previous.slug}`}
+              href={projectHref(locale, previous.slug)}
               label={t.caseStudy.previous}
               name={previous.name}
               kind={pick(previous.kind)}
@@ -166,7 +168,7 @@ export default function CaseStudyPage() {
           )}
           {next && (
             <AdjacentLink
-              to={`/work/${next.slug}`}
+              href={projectHref(locale, next.slug)}
               label={t.caseStudy.next}
               name={next.name}
               kind={pick(next.kind)}
@@ -210,13 +212,13 @@ function Block({ eyebrow, children }: { eyebrow: string; children: React.ReactNo
 }
 
 function AdjacentLink({
-  to,
+  href,
   label,
   name,
   kind,
   direction,
 }: {
-  to: string
+  href: string
   label: string
   name: string
   kind: string
@@ -224,7 +226,7 @@ function AdjacentLink({
 }) {
   return (
     <Link
-      to={to}
+      href={href}
       className={`group flex flex-col gap-2 py-10 transition-colors duration-300 hover:bg-muted ${
         direction === 'next' ? 'md:items-end md:text-end' : ''
       }`}

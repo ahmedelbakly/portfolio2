@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
 import { useI18n } from '@/i18n/useI18n'
 import { projects } from '@/content/projects'
 import { Section } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { Tag } from '@/components/ui/Tag'
+import { projectHref } from '@/lib/paths'
 
 export function Work() {
-  const { t, pick } = useI18n()
+  const { t, pick, locale } = useI18n()
 
   return (
     <Section id="work" eyebrow={t.work.eyebrow} title={t.work.title} subtitle={t.work.subtitle}>
@@ -14,7 +17,7 @@ export function Work() {
         {projects.map((project, index) => (
           <Reveal as="li" key={project.slug} index={index} className="group">
             <Link
-              to={`/work/${project.slug}`}
+              href={projectHref(locale, project.slug)}
               className="relative grid gap-6 border-t border-line py-10 transition-colors duration-300 hover:border-line-accent md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] md:gap-12 lg:py-12"
             >
               {/* Hover wash — bleeds past the gutter so the row reads as a
