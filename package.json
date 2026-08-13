@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out -r https://github.com/ahmedelbakly/portfolio.git"
+    "deploy": "gh-pages -d out --dotfiles -r https://github.com/ahmedelbakly/portfolio.git"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
