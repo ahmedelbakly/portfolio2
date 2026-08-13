@@ -11,18 +11,25 @@ import { TrackSwitcher } from '@/components/ui/TrackSwitcher'
 /**
  * Cycles a list of phrases with a typing effect. Falls back to the first
  * phrase, statically, when the visitor prefers reduced motion.
+ *
+ * The initial value must not depend on the motion preference. The server
+ * cannot know it, so branching on it here rendered an empty phrase into the
+ * static HTML while a reduced-motion client rendered a full one — a text
+ * mismatch that made React throw the pre-rendered tree away. Starting on the
+ * first phrase is identical everywhere, and it also puts real words in the
+ * markup for anything that does not run the animation.
  */
 function useRotatingPhrase(phrases: string[], enabled: boolean) {
   const [index, setIndex] = useState(0)
-  const [text, setText] = useState(enabled ? '' : phrases[0])
+  const [text, setText] = useState(phrases[0])
   const [deleting, setDeleting] = useState(false)
 
   // Restart when the locale or the active track swaps the phrase list.
   useEffect(() => {
     setIndex(0)
-    setText(enabled ? '' : phrases[0])
+    setText(phrases[0])
     setDeleting(false)
-  }, [phrases, enabled])
+  }, [phrases])
 
   useEffect(() => {
     if (!enabled) return

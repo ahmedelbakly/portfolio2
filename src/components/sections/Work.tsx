@@ -24,7 +24,7 @@ export function Work() {
                   full-width target without breaking the text grid. */}
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -inset-x-6 inset-y-0 -z-10 rounded-xl bg-muted opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="pointer-events-none absolute -inset-x-4 inset-y-0 -z-10 rounded-xl bg-muted sm:-inset-x-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
 
               <div className="flex flex-col gap-4">
