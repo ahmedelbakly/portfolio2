@@ -4,15 +4,15 @@
   "version": "2.0.0",
   "type": "module",
   "homepage": "https://ahmedelbakly.github.io/portfolio/",
-  "description": "Portfolio of Ahmed Elbakly — Senior Full-Stack Engineer",
+  "description": "Portfolio of Ahmed Elbakly \u2014 Senior Full-Stack Engineer",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && node scripts/legacy-redirects.mjs",
-    "start": "next start",
+    "dev": "node init && next dev",
+    "build": "node init && next build && node scripts/legacy-redirects.mjs",
+    "start": "node init && next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out -r https://github.com/ahmedelbakly/portfolio.git"
+    "deploy": "gh-pages -d out --dotfiles -r https://github.com/ahmedelbakly/portfolio.git"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

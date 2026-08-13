@@ -6,7 +6,6 @@ dist
 .DS_Store
 
 # Editor
-.vscode/*
 !.vscode/extensions.json
 .idea
 
@@ -16,3 +15,4 @@ yarn-debug.log*
 pnpm-debug.log*
 tsconfig.tsbuildinfo
 next-env.d.ts
+config.bat
