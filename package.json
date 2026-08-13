@@ -4,15 +4,16 @@
   "version": "2.0.0",
   "type": "module",
   "homepage": "https://ahmedelbakly.github.io/portfolio/",
-  "description": "Portfolio of Ahmed Elbakly — Senior Full-Stack Engineer",
+  "description": "Portfolio of Ahmed Elbakly \u2014 Senior Full-Stack Engineer",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && node scripts/legacy-redirects.mjs && node scripts/check-links.mjs",
-    "start": "next start",
+    "dev": "node init && next dev",
+    "build": "node init && next build && node scripts/legacy-redirects.mjs && node scripts/check-links.mjs",
+    "start": "node init && next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out --dotfiles -r https://github.com/ahmedelbakly/portfolio.git"
+    "deploy": "gh-pages -d out --dotfiles -r https://github.com/ahmedelbakly/portfolio.git",
+    "og": "node scripts/og-cards.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -31,12 +32,14 @@
     "@types/node": "^26.1.2",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "esbuild": "^0.28.2",
     "eslint": "^9.21.0",
     "eslint-config-next": "^16.3.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "gh-pages": "^6.3.0",
     "globals": "^16.0.0",
     "postcss": "^8.5.26",
+    "puppeteer-core": "^25.6.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.1"
   }
