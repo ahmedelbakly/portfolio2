@@ -9,7 +9,7 @@ import { useTrack } from '@/track/useTrack'
 import { profile } from '@/content/profile'
 import { LocaleToggle, ThemeToggle } from './Toggles'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
-import { localeHref, sectionHref } from '@/lib/paths'
+import { localeHref, sectionUrl } from '@/lib/paths'
 
 const SECTION_IDS = ['profiles', 'work', 'about', 'stack', 'experience', 'contact'] as const
 
@@ -53,7 +53,7 @@ export function Nav() {
 
   const links = SECTION_IDS.map((id) => ({
     id,
-    href: sectionHref(locale, id, onHome),
+    href: sectionUrl(locale, id, onHome),
     label: t.nav[id],
   }))
 

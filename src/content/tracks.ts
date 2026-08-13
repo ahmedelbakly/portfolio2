@@ -1,4 +1,5 @@
 import type { Localized } from '@/i18n/types'
+import { withBase } from '@/lib/site'
 
 export type TrackId = 'fullstack' | 'backend'
 
@@ -88,7 +89,7 @@ export const tracks: Track[] = [
         'الملكية التقنية وتسليم العملاء',
       ],
     },
-    resumeUrl: '/files/Ahmed-Elbakly-Senior-FullStack-Engineer-CV.pdf',
+    resumeUrl: withBase('/files/Ahmed-Elbakly-Senior-FullStack-Engineer-CV.pdf'),
   },
   {
     id: 'backend',
@@ -153,7 +154,7 @@ export const tracks: Track[] = [
         'خطوط النشر والحاويات',
       ],
     },
-    resumeUrl: '/files/Ahmed-Elbakly-Senior-Backend-Engineer-CV.pdf',
+    resumeUrl: withBase('/files/Ahmed-Elbakly-Senior-Backend-Engineer-CV.pdf'),
   },
 ]
 

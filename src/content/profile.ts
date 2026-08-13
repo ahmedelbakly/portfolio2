@@ -1,4 +1,5 @@
 import type { Localized } from '@/i18n/types'
+import { withBase } from '@/lib/site'
 
 export const profile = {
   name: {
@@ -20,7 +21,7 @@ export const profile = {
   } satisfies Localized,
 
   /** Default download — the broader of the two profiles. */
-  resumeUrl: '/files/Ahmed-Elbakly-Senior-FullStack-Engineer-CV.pdf',
+  resumeUrl: withBase('/files/Ahmed-Elbakly-Senior-FullStack-Engineer-CV.pdf'),
 
   socials: [
     { id: 'github', label: 'GitHub', href: 'https://github.com/ahmedelbakly' },

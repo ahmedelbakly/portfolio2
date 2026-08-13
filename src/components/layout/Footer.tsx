@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useI18n } from '@/i18n/useI18n'
 import { profile } from '@/content/profile'
 import { projects } from '@/content/projects'
-import { localeHref, projectHref } from '@/lib/paths'
+import { localeHref, localeUrl, projectHref } from '@/lib/paths'
 
 const SECTION_IDS = ['work', 'about', 'stack', 'contact'] as const
 
@@ -49,7 +49,7 @@ export function Footer() {
               {SECTION_IDS.map((id) => (
                 <li key={id}>
                   <a
-                    href={`${localeHref(locale)}#${id}`}
+                    href={`${localeUrl(locale)}#${id}`}
                     className="text-sm text-fg-muted transition-colors hover:text-fg"
                   >
                     {t.nav[id]}
