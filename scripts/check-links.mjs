@@ -79,6 +79,19 @@ for (const file of pages) {
   }
 }
 
+// Social cards are referenced as absolute URLs in meta tags, which the anchor
+// sweep above never sees. A card that does not exist means a shared link
+// previews with no image at all.
+for (const file of pages) {
+  const html = await readFile(file, 'utf8')
+  const page = file.slice(out.length - 1)
+  for (const match of html.matchAll(/<meta\s+property="og:image"\s+content="([^"]+)"/g)) {
+    const pathname = new URL(match[1]).pathname
+    if (!cache.has(pathname)) cache.set(pathname, await resolves(pathname))
+    if (!cache.get(pathname)) broken.push({ page, href: match[1], why: 'og:image is missing' })
+  }
+}
+
 if (broken.length > 0) {
   const seen = new Set()
   console.error(`\n✗ ${broken.length} broken internal link(s):\n`)

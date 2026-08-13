@@ -24,6 +24,7 @@ export async function generateMetadata({
   const title = `${project.name} — ${project.kind[locale]} · ${profile.name[locale]}`
   const description = project.tagline[locale]
   const path = `/${locale}/work/${project.slug}/`
+  const ogCard = `/og/${locale}-${project.slug}.png`
 
   return {
     title,
@@ -40,14 +41,14 @@ export async function generateMetadata({
       title,
       description,
       url: absoluteUrl(path),
-      images: [{ url: absoluteUrl('/og.png'), width: 1200, height: 630 }],
+      images: [{ url: absoluteUrl(ogCard), width: 1200, height: 630, alt: title }],
       locale: locale === 'ar' ? 'ar_EG' : 'en_US',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [absoluteUrl('/og.png')],
+      images: [absoluteUrl(ogCard)],
     },
   }
 }

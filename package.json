@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out --dotfiles -r https://github.com/ahmedelbakly/portfolio.git"
+    "deploy": "gh-pages -d out --dotfiles -r https://github.com/ahmedelbakly/portfolio.git",
+    "og": "node scripts/og-cards.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -31,12 +32,14 @@
     "@types/node": "^26.1.2",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "esbuild": "^0.28.2",
     "eslint": "^9.21.0",
     "eslint-config-next": "^16.3.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "gh-pages": "^6.3.0",
     "globals": "^16.0.0",
     "postcss": "^8.5.26",
+    "puppeteer-core": "^25.6.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.1"
   }
